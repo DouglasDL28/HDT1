@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class Main {
 
 
+
     static String OFFmenu = "MENÚ: \n" +
             "\t1. Encender radio. \n" +
             "\t2. Salir.";
@@ -18,6 +19,7 @@ public class Main {
     public static void main(String[] args) {
         Radio myRadio = new Radio();
         boolean continuar = true;
+        String am = "AM";
 
         do {
             System.out.println(OFFmenu);
@@ -36,6 +38,45 @@ public class Main {
 
                     switch (opcionMenu2) {
                         case 1:
+                            myRadio.encendidoRadio();
+                            System.out.println("Apagando el radio...");
+                            continuar = false;
+                            break;
+                        case 2:
+                            if (myRadio.cambiarAmFm()) {
+                                am = "AM";
+                            }else{
+                                am = "FM";
+                            };
+                            System.out.println(" Se ha cambiado de sintonia, ahora se encuentra en " + am);
+                            break;
+
+                        case 3:
+                            System.out.println("La nueva frecuencia es de " +myRadio.subirFrecuencia() +am);
+                            break;
+                        case 4:
+                            System.out.println("La nueva frecuencia es de " +myRadio.bajarFrecuencia() +am);
+                            break;
+                        case 5:
+                            // TODO: 2019-01-17
+                            System.out.println("Que estacion quiere escuchar (1-12) ?");
+                            String station = input.nextLine();
+                            Float x;
+                            x = Float.valueOf(station);
+                           // System.out.print( "La estacion que seleciono es la" +myRadio.getFavorito(station)));
+                            break;
+                        case 6:
+                            // TODO: 2019-01-17
+                            System.out.println(" En que numero quiere guardar la estacion (1-12)?");
+                            String station0 = input.nextLine();
+                            String station1 = input.nextLine();
+
+                            int change = Integer.valueOf(station1);
+                            myRadio.setFavorito((change));
+                            System.out.println("Se guardo exitosamente la estacion selecionada");
+                            break;
+
+
 
 
                     }
@@ -45,6 +86,7 @@ public class Main {
 
                 //Salir.
                 case 2:
+                    System.out.println("Apagando el radio...");
                     continuar = false;
                     break;
             }
